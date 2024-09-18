@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import org.example.practica2fis.Models.Compound;
 import org.example.practica2fis.Models.Seat;
+import org.example.practica2fis.Models.Validator;
 
 public class HelloController {
 
@@ -27,12 +28,36 @@ public class HelloController {
     private Button buyButton;
 
     private Compound compound;
+    private final Validator validator = new Validator();
 
     @FXML
     public void initialize() {
         // Crear la matriz de asientos (6 filas, 4 columnas)
         compound = new Compound(6, 4);
         drawSeats();
+
+        //Setting eventlistener for selection
+        seatNumberInput.textProperty().addListener((observable, oldValue, newValue) -> {
+            //System.out.println("El texto ha cambiado de: " + oldValue + " a: " + newValue);
+            //deselecting seat
+            if(validator.checkInput(oldValue)){
+                int lastIndex = Integer.parseInt(oldValue);
+                if(compound.checkAvailability(lastIndex)){ //only if it was actually selected, if it was bought no need
+                    compound.deselectSeat(lastIndex);
+                }
+            }
+
+            if(validator.checkInput(newValue)){
+                int index = Integer.parseInt(newValue);
+                if(compound.checkAvailability(index)){
+                    seatAvailable(index);
+                }else{//not available
+                    seatNotAvailable(index);
+                    //method to show non availability
+                }
+            }
+        });
+
     }
 
     private void drawSeats() {
@@ -70,6 +95,14 @@ public class HelloController {
 
     @FXML
     public void onBuyButtonClick() {
+
+    }
+
+    private void seatAvailable(int index){
+        compound.selectSeat(index);
+    }
+
+    private void seatNotAvailable(int index){
 
     }
 

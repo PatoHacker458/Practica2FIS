@@ -1,5 +1,6 @@
 package org.example.practica2fis.Models;
 
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
@@ -39,18 +40,24 @@ public class Compound
 
     public void selectSeat(int index){
         int[] indexes = convertIndex(index);
-        this.seatsMatrix.get(indexes[0]).get(indexes[1]).getCircle().setStroke(Paint.valueOf("YELLOW"));
+        this.seatsMatrix.get(indexes[0]).get(indexes[1]).getCircle().setFill(Color.YELLOW);
+    }
+
+    public void deselectSeat(int index){
+        int[] indexes = convertIndex(index);
+        this.seatsMatrix.get(indexes[0]).get(indexes[1]).getCircle().setFill(Color.CYAN);
     }
 
     public void buySeat(int index)
     {
         int[] indexes = convertIndex(index);
         this.seatsMatrix.get(indexes[0]).get(indexes[1]).setAvailable(false);
-        this.seatsMatrix.get(indexes[0]).get(indexes[1]).getCircle().setStroke(Paint.valueOf("GRAY"));
+        this.seatsMatrix.get(indexes[0]).get(indexes[1]).getCircle().setFill(Color.GRAY);
     }
 
     private int[] convertIndex(int index){
-        index--;
+        //index--;
+        index = 24 - index; //inverted cuz they inverted the indexes in constructor lol
         return new int[]{index / this.ncols, index % this.ncols};
     }
 

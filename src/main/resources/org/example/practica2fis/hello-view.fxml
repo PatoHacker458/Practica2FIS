@@ -69,7 +69,6 @@
                 <HBox alignment="CENTER" spacing="10">
                     <Label text="Ingrese el número de asiento:"/>
                     <TextField fx:id="seatNumberInput" prefWidth="100"/>
-                    <Button fx:id="selectButton" text="Seleccionar"/>
                 </HBox>
                 <Label fx:id="seatInfoLabel" text="Información de Asiento" wrapText="true"/>
                 <Button fx:id="buyButton" text="Comprar"/>
