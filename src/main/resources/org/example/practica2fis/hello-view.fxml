@@ -70,20 +70,18 @@
                     <Label text="Ingrese el número de asiento:"/>
                     <TextField fx:id="seatNumberInput" prefWidth="100"/>
                 </HBox>
-                <Label fx:id="seatInfoLabel" text="Información de Asiento" wrapText="true"/>
-                <Button fx:id="buyButton" text="Comprar"/>
             </VBox>
 
-            <VBox spacing="10" alignment="CENTER">
+            <VBox  fx:id="informationSeat" spacing="10" alignment="CENTER" visible="false">
                 <Label text="Información de Asiento"/>
-                <Label text="El asiento no se encuentra disponible, por favor elija otro."/>
+                <Label fx:id="availableLbl" text="El asiento no se encuentra disponible, por favor elija otro." visible="false"/>
                 <HBox alignment="CENTER">
                     <Label text="Número: "/>
-                    <TextField fx:id="seatNumber"/>
+                    <Label fx:id="seatNumber"/>
                 </HBox>
                 <HBox alignment="CENTER">
                     <Label text="Costo: $ "/>
-                    <TextField fx:id="seatCost"/>
+                    <Label fx:id="seatCost"/>
                 </HBox>
                 <Button text="Comprar" onAction="#onBuyButtonClick"/>
             </VBox>

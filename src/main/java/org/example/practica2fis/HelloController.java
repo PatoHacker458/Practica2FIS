@@ -1,17 +1,19 @@
 package org.example.practica2fis;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import org.example.practica2fis.Models.Compound;
 import org.example.practica2fis.Models.Seat;
 import org.example.practica2fis.Models.Validator;
+
+import java.util.Optional;
 
 public class HelloController {
 
@@ -29,6 +31,13 @@ public class HelloController {
 
     private Compound compound;
     private final Validator validator = new Validator();
+
+    @FXML
+    private Label availableLbl; //hacer visible para mostrar msj de ocupado
+    @FXML
+    private VBox informationSeat;
+    @FXML
+    private Label seatNumber, seatCost;
 
     @FXML
     public void initialize() {
@@ -51,8 +60,10 @@ public class HelloController {
                 int index = Integer.parseInt(newValue);
                 if(compound.checkAvailability(index)){
                     seatAvailable(index);
+                    availableLbl.setVisible(false);
                 }else{//not available
                     seatNotAvailable(index);
+                    availableLbl.setVisible(true);
                     //method to show non availability
                 }
             }
@@ -95,15 +106,59 @@ public class HelloController {
 
     @FXML
     public void onBuyButtonClick() {
+        // Obtener el número de asiento ingresado
+        int seatNumber = Integer.parseInt(seatNumberInput.getText());
+
+        if (showConfirmation("Confirmar compra", "¿Esta seguro que desea comprar este asiento?")){
+            compound.buySeat(seatNumber); //Esto ya cambia el color del circulo
+
+            showMessage("Compra Exitosa", "La compra se ha realizado con éxito", Alert.AlertType.INFORMATION);
+
+            if (showConfirmation("Continuar comprando", "¿Desea seguir comprando?")){
+                clear();
+            }else{
+                Platform.exit();
+            }
+        }else {
+            clear();
+        }
+    }
+
+    @FXML
+    public void onSelectButtonClick() {
 
     }
 
     private void seatAvailable(int index){
         compound.selectSeat(index);
+
+        informationSeat.setVisible(true);
     }
 
     private void seatNotAvailable(int index){
 
+    }
+
+    private void showMessage(String title, String message, Alert.AlertType alertType) {//Method to show an alert
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private boolean showConfirmation(String title, String message){//Method to show a confirmation message
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle(title);
+        confirmation.setContentText(message);
+        Optional<ButtonType> response = confirmation.showAndWait();
+        return (response.get() == ButtonType.OK);
+    }
+
+    private void clear(){
+        seatNumberInput.clear();
+        seatNumber.setText("");
+        seatCost.setText("");
+        informationSeat.setVisible(false);
     }
 
 }
