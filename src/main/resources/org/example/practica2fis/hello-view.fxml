@@ -73,8 +73,8 @@
             </VBox>
 
             <VBox  fx:id="informationSeat" spacing="10" alignment="CENTER" visible="false">
-                <Label text="Información de Asiento"/>
-                <Label fx:id="availableLbl" text="El asiento no se encuentra disponible, por favor elija otro." visible="false"/>
+                <Label fx:id="seatInfoLabel" text="Información de Asiento"/>
+                <!--
                 <HBox alignment="CENTER">
                     <Label text="Número: "/>
                     <Label fx:id="seatNumber"/>
@@ -83,7 +83,11 @@
                     <Label text="Costo: $ "/>
                     <Label fx:id="seatCost"/>
                 </HBox>
+                -->
                 <Button text="Comprar" onAction="#onBuyButtonClick"/>
+            </VBox>
+            <VBox  fx:id="notAvailableSeat" spacing="10" alignment="CENTER" visible="false">
+                <Label fx:id="availableLbl" text="El asiento no se encuentra disponible, por favor elija otro."/>
             </VBox>
         </VBox>
     </center>

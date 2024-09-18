@@ -19,7 +19,7 @@ public class Compound
         for (int i = 0; i < this.nrows; i++) {
             List<Seat> list = new ArrayList<>();
             for (int j = 0; j < this.ncols; j++) {
-                Seat seat = new Seat(i < 2 ? 'A' : i < 4 ? 'B' : 'C', seatNumber--);
+                Seat seat = new Seat(seatNumber > 16 ? 'C' : seatNumber > 8 ? 'B' : 'A', seatNumber--);
                 list.add(seat);
             }
             this.seatsMatrix.add(list);

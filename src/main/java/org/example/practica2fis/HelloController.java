@@ -35,7 +35,7 @@ public class HelloController {
     @FXML
     private Label availableLbl; //hacer visible para mostrar msj de ocupado
     @FXML
-    private VBox informationSeat;
+    private VBox informationSeat, notAvailableSeat;
     @FXML
     private Label seatNumber, seatCost;
 
@@ -53,6 +53,8 @@ public class HelloController {
                 int lastIndex = Integer.parseInt(oldValue);
                 if(compound.checkAvailability(lastIndex)){ //only if it was actually selected, if it was bought no need
                     compound.deselectSeat(lastIndex);
+                    informationSeat.setVisible(false);
+                    notAvailableSeat.setVisible(false);
                 }
             }
 
@@ -131,12 +133,12 @@ public class HelloController {
 
     private void seatAvailable(int index){
         compound.selectSeat(index);
-
+        seatInfoLabel.setText(compound.seatInfo(index));
         informationSeat.setVisible(true);
     }
 
     private void seatNotAvailable(int index){
-
+        notAvailableSeat.setVisible(true);
     }
 
     private void showMessage(String title, String message, Alert.AlertType alertType) {//Method to show an alert
@@ -156,8 +158,9 @@ public class HelloController {
 
     private void clear(){
         seatNumberInput.clear();
-        seatNumber.setText("");
-        seatCost.setText("");
+//        seatNumber.setText("");
+//        seatCost.setText("");
+        notAvailableSeat.setVisible(false);
         informationSeat.setVisible(false);
     }
 
