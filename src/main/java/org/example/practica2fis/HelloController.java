@@ -103,7 +103,7 @@ public class HelloController {
 
     @FXML
     public void onExitButtonClick() {
-
+        Platform.exit();
     }
 
     @FXML
@@ -126,10 +126,7 @@ public class HelloController {
         }
     }
 
-    @FXML
-    public void onSelectButtonClick() {
 
-    }
 
     private void seatAvailable(int index){
         compound.selectSeat(index);

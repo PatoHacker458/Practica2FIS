@@ -47,9 +47,9 @@ public class Seat
 
     @Override
     public String toString(){
-        return "Seat no: " + this.id +
-                "\nZone: " + this.zone +
-                "\nPrice: $" + this.price;
+        return "Asiento No: " + this.id +
+                "\nZona: " + this.zone +
+                "\nPrecio: $" + this.price;
     }
 }
 
