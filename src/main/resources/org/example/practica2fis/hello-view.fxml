@@ -5,12 +5,97 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.practica2fis.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.StackPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.practica2fis.HelloController"
+            prefHeight="600" prefWidth="800">
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+    <left>
+        <VBox spacing="30" style="-fx-border-color: black; -fx-border-width: 2;"
+                alignment="CENTER">
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <VBox spacing="10" alignment="CENTER">
+                    <!-- Indicador de las áreas -->
+                    <VBox alignment="CENTER" spacing="10">
+                        <VBox alignment="CENTER">
+                            <Rectangle
+                                    width="30" height="80"
+                                    fill="LIGHTGRAY"
+                                    stroke="BLACK"
+                                    arcWidth="10" arcHeight="10"/>
+                            <Label text="Zona C" />
+                        </VBox>
+                        <VBox alignment="CENTER">
+                            <Rectangle
+                                    width="30" height="80"
+                                    fill="LIGHTGRAY"
+                                    stroke="BLACK"
+                                    arcWidth="10" arcHeight="10"/>
+                            <Label text="Zona B" />
+                        </VBox>
+                        <VBox alignment="CENTER">
+                            <Rectangle
+                                    width="30" height="80"
+                                    fill="LIGHTGRAY"
+                                    stroke="BLACK"
+                                    arcWidth="10" arcHeight="10"/>
+                            <Label text="Zona A" />
+                        </VBox>
+                    </VBox>
+                </VBox>
+                <!-- Grilla de asientos -->
+                <GridPane fx:id="seatGrid" alignment="CENTER" hgap="10" vgap="10">
+                </GridPane>
+            </HBox>
+            <StackPane alignment="CENTER">
+                <Rectangle
+                        width="200" height="30"
+                        fill="GRAY"
+                        stroke="BLACK" strokeWidth="2"
+                        arcWidth="10" arcHeight="10" />
+                <Label text="ESCENARIO" textFill="WHITE" />
+            </StackPane>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox style="-fx-border-color: black; -fx-border-width: 2;" spacing="50" alignment="CENTER">
+            <VBox alignment="CENTER" spacing="10" >
+                <HBox alignment="CENTER" spacing="10">
+                    <Label text="Ingrese el número de asiento:"/>
+                    <TextField fx:id="seatNumberInput" prefWidth="100"/>
+                    <Button fx:id="selectButton" text="Seleccionar"/>
+                </HBox>
+                <Label fx:id="seatInfoLabel" text="Información de Asiento" wrapText="true"/>
+                <Button fx:id="buyButton" text="Comprar"/>
+            </VBox>
+
+            <VBox spacing="10" alignment="CENTER">
+                <Label text="Información de Asiento"/>
+                <Label text="El asiento no se encuentra disponible, por favor elija otro."/>
+                <HBox alignment="CENTER">
+                    <Label text="Número: "/>
+                    <TextField fx:id="seatNumber"/>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <Label text="Costo: $ "/>
+                    <TextField fx:id="seatCost"/>
+                </HBox>
+                <Button text="Comprar" onAction="#onBuyButtonClick"/>
+            </VBox>
+        </VBox>
+    </center>
+
+    <top>
+        <VBox alignment="CENTER" style="-fx-border-color: black; -fx-border-width: 2;">
+            <Button fx:id="ExitButton" onAction="#onExitButtonClick"
+                    text="Salir"/>
+        </VBox>
+    </top>
+
+</BorderPane>

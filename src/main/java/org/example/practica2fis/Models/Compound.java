@@ -7,17 +7,18 @@ import java.util.List;
 
 public class Compound
 {
-    private List<List<Seat>> seatsMatrix = new ArrayList<>();
+    public List<List<Seat>> seatsMatrix = new ArrayList<>();
     private int nrows, ncols;
 
     public Compound(int nrows, int ncols) { //6 rows and 4 cols in this case
         this.nrows = nrows;
         this.ncols = ncols;
 
+        int seatNumber = nrows * ncols;  // Empezar desde el número más alto
         for (int i = 0; i < this.nrows; i++) {
             List<Seat> list = new ArrayList<>();
             for (int j = 0; j < this.ncols; j++) {
-                Seat seat = new Seat(i < 2 ? 'A' : i < 4 ? 'B' : 'C', i * 4 + j + 1);
+                Seat seat = new Seat(i < 2 ? 'A' : i < 4 ? 'B' : 'C', seatNumber--);
                 list.add(seat);
             }
             this.seatsMatrix.add(list);
