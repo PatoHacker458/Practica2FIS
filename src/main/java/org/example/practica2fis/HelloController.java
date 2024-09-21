@@ -6,13 +6,20 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import org.example.practica2fis.Models.Compound;
 import org.example.practica2fis.Models.Seat;
 import org.example.practica2fis.Models.Validator;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Optional;
+
+import javafx.scene.media.MediaPlayer;
 
 public class HelloController {
 
@@ -38,9 +45,13 @@ public class HelloController {
     @FXML
     private Label seatNumber, seatCost;
 
+    public HelloController() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    }
+
 
     @FXML
     public void initialize() {
+        music();
         // Crear la matriz de asientos (6 filas, 4 columnas)
         compound = new Compound(6, 4);
         drawSeats();
@@ -159,6 +170,15 @@ public class HelloController {
 //        seatCost.setText("");
         notAvailableSeat.setVisible(false);
         informationSeat.setVisible(false);
+    }
+
+    MediaPlayer mediaPlayer;
+    private void music(){
+        String s = "src/main/resources/org/example/practica2fis/sample.mp3";
+        Media h = new Media(Paths.get(s).toUri().toString());
+        mediaPlayer = new MediaPlayer(h);
+        mediaPlayer.setVolume(0.1);
+        mediaPlayer.play();
     }
 
 }
