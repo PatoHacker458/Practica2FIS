@@ -3,7 +3,6 @@ package org.example.practica2fis;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -38,6 +37,7 @@ public class HelloController {
     private VBox informationSeat, notAvailableSeat;
     @FXML
     private Label seatNumber, seatCost;
+
 
     @FXML
     public void initialize() {
